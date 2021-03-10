@@ -1,3 +1,10 @@
+BOLD=\033[1m
+RED=\033[0;31m
+GREEN=\033[0;32m
+YELLOW=\033[0;33m
+BLUE=\033[0;34m
+SET=\033[0m
+
 CH_NAME			=	checker
 # PS_NAME			=	push_swap
 
@@ -30,24 +37,29 @@ objs			:
 					@mkdir -p $(OBJS_DIR)
 
 $(OBJS_DIR)/%.o	:	$(SRCS_DIR)/%.c
-					$(CC) $(CFLAGS) $(LIBFT_INC) -I $(INC_DIR) -c $< -o $@
+					@$(CC) $(CFLAGS) $(LIBFT_INC) -I $(INC_DIR) -c $< -o $@
 
 $(LIBFT_LIB)	:
-					@echo "\nCompiling $(LIBFT_DIR)..."
+					@echo "$(YELLOW)Compiling libft...$(SET)"
 					@make -C $(LIBFT_DIR)
+					@echo "$(GREEN)Libft is compiled !$(SET)"
 
 $(CH_NAME)		:	$(CH_OBJS)
-					$(CC) $(CH_OBJS) $(LIBFT_LNK) -lm -o $(CH_NAME)
+					@echo "$(YELLOW)Compiling checker...$(SET)"
+					@$(CC) $(CH_OBJS) $(LIBFT_LNK) -lm -o $(CH_NAME)
+					@echo "$(GREEN)Checker is compiled !$(SET)"
 
 # $(CH_NAME)		:	$(PS_OBJS)
+# 					@echo "$(YELLOW)Compiling push_swap...$(SET)"
 # 					$(CC) $(PS_OBJS) $(LIBFT_LNK) -lm -o $(PS_NAME)
+# 					@echo "$(GREEN)Push_swap is compiled !$(SET)"
 
 clean			:
 					@rm -rf $(OBJS_DIR)
 					@make -C $(LIBFT_DIR) clean
 
 fclean			:	clean
-					rm -f $(CH_NAME)
-					make -C $(LIBFT_DIR) fclean
+					@rm -f $(CH_NAME)
+					@make -C $(LIBFT_DIR) fclean
 
 re				:	fclean all
