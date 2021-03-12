@@ -43,6 +43,7 @@ SRCS			=	ft_memset.c \
 					ft_strnjoin.c \
 					ft_strtrim.c \
 					ft_split.c \
+					ft_tablen.c \
 					ft_itoa.c \
 					ft_strmapi.c \
 					ft_putchar.c \

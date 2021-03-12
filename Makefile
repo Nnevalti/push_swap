@@ -17,6 +17,8 @@ OBJS_DIR		=	./objs
 
 # CHECKER
 CH_SRCS			=	checker.c \
+					parsing.c \
+					free.c \
 					check_arg.c \
 					pile.c
 

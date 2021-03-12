@@ -27,31 +27,32 @@ int		isinteger(char *arg)
 	return (0);
 }
 
-int		check_double(char **av, int i)
+int		check_double(char **tab, int i)
 {
 	int		j;
 
 	j = i + 1;
-	while (av[j])
+	while (tab[j])
 	{
-		if (!(ft_strcmp(av[i], av[j])))
+		if (!(ft_strcmp(tab[i], tab[j])))
 			return (-1);
 		j++;
 	}
 	return (0);
 }
 
-void	check_arg(char **av)
+void	check_arg(char **tab)
 {
 	int		i;
 
-	i = 1;
-	while (av[i])
+	i = 0;
+	while (tab[i])
 	{
-		if (check_isnum(av[i]) == -1
-			|| isinteger(av[i]) == -1
-			|| check_double(av, i) == -1)
+		if (check_isnum(tab[i]) == -1
+			|| isinteger(tab[i]) == -1
+			|| check_double(tab, i) == -1)
 		{
+			free_tab(tab);
 			printf("Error\n");
 			exit (1);
 		}

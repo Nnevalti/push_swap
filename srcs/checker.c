@@ -3,14 +3,23 @@
 int		main(int ac, char **av)
 {
 	t_pile	*a;
-	t_pile	*b;
+	// t_pile	*b;
+	char	**tab;
+	int		i;
 
 	if (ac <= 1)
 		exit (1);
-	check_arg(av);
+	tab = parse_arg(av);
+	check_arg(tab);
 	a = init_pile();
-	b = init_pile();
-	for (int i = 0; av[i]; i++)
-		printf("av[%d] = %s\n", i, av[i]);
+	// b = init_pile();
+	i = ft_tablen(tab);
+	while (i-- > 0)
+	{
+		empiler(a, ft_atoi(tab[i]));
+	}
+	display_pile(a);
+	free_tab(tab);
+	free_pile(a);
 	return (0);
 }

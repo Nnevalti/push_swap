@@ -59,3 +59,16 @@ int			pile_length(t_pile *pile)
 	}
 	return (i);
 }
+
+void		display_pile(t_pile *pile)
+{
+	t_element *current;
+
+	current = pile->first;
+	while (current)
+	{
+		printf("nb = %d\n", current->nb);
+		current = current->next;
+	}
+	return ;
+}
