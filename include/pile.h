@@ -15,4 +15,6 @@ typedef struct		s_pile
 	t_element		*first;
 }					t_pile;
 
+void				check_arg(char **av);
+
 #endif

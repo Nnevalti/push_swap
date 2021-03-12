@@ -17,6 +17,7 @@ OBJS_DIR		=	./objs
 
 # CHECKER
 CH_SRCS			=	checker.c \
+					check_arg.c \
 					pile.c
 
 CH_OBJS			=	$(addprefix $(OBJS_DIR)/, $(CH_SRCS:.c=.o))
