@@ -4,6 +4,7 @@ void	free_pile(t_pile *pile)
 {
 	t_element	*current;
 	t_element	*element;
+
 	current = pile->first;
 	while (current)
 	{

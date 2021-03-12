@@ -21,7 +21,6 @@ int		isinteger(char *arg)
 	long	res;
 
 	res = ft_atoi(arg);
-	printf("%ld\n", res);
 	if (res > 2147483647 || res < -2147483648)
 		return (-1);
 	return (0);
@@ -54,7 +53,7 @@ void	check_arg(char **tab)
 		{
 			free_tab(tab);
 			printf("Error\n");
-			exit (1);
+			exit(1);
 		}
 		i++;
 	}

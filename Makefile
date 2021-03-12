@@ -20,7 +20,8 @@ CH_SRCS			=	checker.c \
 					parsing.c \
 					free.c \
 					check_arg.c \
-					pile.c
+					pile.c \
+					sorted_check.c
 
 CH_OBJS			=	$(addprefix $(OBJS_DIR)/, $(CH_SRCS:.c=.o))
 

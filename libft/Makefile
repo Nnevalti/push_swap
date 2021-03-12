@@ -70,7 +70,7 @@ OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 all				:	objs $(NAME)
 
 objs			:
-					@mkdir -p objs
+					@mkdir -p $(OBJS_DIR)
 
 $(OBJS_DIR)/%.o	:	$(SRCS_DIR)/%.c
 					@$(CC) $(CFLAGS) -I $(INC_DIR) -c $< -o $@

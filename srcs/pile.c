@@ -1,13 +1,13 @@
 #include "../include/pile.h"
 
-t_pile		*init_pile()
+t_pile		*init_pile(void)
 {
 	t_pile	*pile;
 
 	if (!(pile = malloc(sizeof(t_pile))))
 	{
 		printf("Malloc failed\n");
-		exit (-1);
+		exit(-1);
 	}
 	pile->first = NULL;
 	return (pile);
@@ -18,7 +18,7 @@ void		empiler(t_pile *pile, int nb)
 	t_element		*new;
 
 	if (!(new = malloc(sizeof(t_element))) || pile == NULL)
-		exit (1);
+		exit(1);
 	new->nb = nb;
 	new->next = pile->first;
 	pile->first = new;
@@ -31,7 +31,7 @@ int			depiler(t_pile *pile)
 	t_element	*depile_element;
 
 	if (pile == NULL)
-		exit (1);
+		exit(1);
 	depile_nb = 0;
 	depile_element = pile->first;
 	if (depile_element != NULL)
