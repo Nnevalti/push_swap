@@ -21,6 +21,7 @@ CH_SRCS			=	checker.c \
 					free.c \
 					check_arg.c \
 					pile.c \
+					operation.c \
 					sorted_check.c
 
 CH_OBJS			=	$(addprefix $(OBJS_DIR)/, $(CH_SRCS:.c=.o))

@@ -45,10 +45,19 @@ void					empiler(t_pile *pile, int nb);
 int						depiler(t_pile *pile);
 int						pile_length(t_pile *pile);
 void					display_pile(t_pile *pile);
+
 /*
 ** SORTED_CHECK.C
 */
 void					sorted_check(t_pile *a, t_pile *b);
+
+/*
+** OPERATION.C
+*/
+void					push_nb(t_pile *from, t_pile *to);
+void					swap_nb(t_pile *pile);
+void					rotate_nb(t_pile *pile, int len);
+void					reverse_rotate_nb(t_pile *pile, int len);
 
 /*
 ** FREE.C

@@ -67,8 +67,9 @@ void		display_pile(t_pile *pile)
 	current = pile->first;
 	while (current)
 	{
-		printf("nb = %d\n", current->nb);
+		printf("%d ", current->nb);
 		current = current->next;
 	}
+	printf("\n");
 	return ;
 }
