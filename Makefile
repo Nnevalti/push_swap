@@ -18,11 +18,11 @@ OBJS_DIR		=	./objs
 # CHECKER
 CH_SRCS			=	checker.c \
 					parsing.c \
-					free.c \
 					check_arg.c \
 					pile.c \
-					operation.c \
+					free.c \
 					exec_cmd.c \
+					operation.c \
 					sorted_check.c
 
 CH_OBJS			=	$(addprefix $(OBJS_DIR)/, $(CH_SRCS:.c=.o))
@@ -30,10 +30,13 @@ CH_OBJS			=	$(addprefix $(OBJS_DIR)/, $(CH_SRCS:.c=.o))
 # PUSH_SWAP
 PS_SRCS			=	push_swap.c \
 					parsing.c \
-					free.c \
 					check_arg.c \
+					pile.c \
+					free.c \
+					exec_cmd.c \
 					operation.c \
-					pile.c
+					sort.c \
+					sorted_check.c
 
 PS_OBJS			=	$(addprefix $(OBJS_DIR)/, $(PS_SRCS:.c=.o))
 
@@ -56,12 +59,12 @@ $(LIBFT_LIB)	:
 					@make -C $(LIBFT_DIR)
 					@echo "$(GREEN)Libft is compiled !$(SET)"
 
-$(CH_NAME)		:	$(CH_OBJS)
+$(CH_NAME)		:	objs $(LIBFT_LIB) $(CH_OBJS)
 					@echo "$(YELLOW)Compiling checker...$(SET)"
 					@$(CC) $(CH_OBJS) $(LIBFT_LNK) -lm -o $(CH_NAME)
 					@echo "$(GREEN)Checker is compiled !$(SET)"
 
-$(PS_NAME)		:	$(PS_OBJS)
+$(PS_NAME)		:	objs $(LIBFT_LIB) $(PS_OBJS)
 					@echo "$(YELLOW)Compiling push_swap...$(SET)"
 					$(CC) $(PS_OBJS) $(LIBFT_LNK) -lm -o $(PS_NAME)
 					@echo "$(GREEN)Push_swap is compiled !$(SET)"

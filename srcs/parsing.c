@@ -1,6 +1,6 @@
 #include "../include/pile.h"
 
-char	**ft_append_tab(char **tab, char **tmp_tab)
+char	**ft_join_tab(char **tab, char **tmp_tab)
 {
 	char	**new_tab;
 	int		len;
@@ -39,7 +39,7 @@ char	**parse_arg(char **av)
 	while (av[i] && av[i + 1])
 	{
 		tmp_tab = ft_split(av[i + 1], ' ');
-		tab = ft_append_tab(tab, tmp_tab);
+		tab = ft_join_tab(tab, tmp_tab);
 		i++;
 	}
 	return (tab);

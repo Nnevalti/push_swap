@@ -32,3 +32,16 @@ void	sorted_check(t_pile *a, t_pile *b)
 		printf("KO\n");
 	return ;
 }
+
+int		sorted_check_ps(t_pile *a, t_pile *b)
+{
+	if (pile_length(b) == 0)
+	{
+		if (check_pile_sorted(a))
+			return (1);
+		else
+			return (0);
+	}
+	else
+		return (0);
+}

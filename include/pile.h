@@ -50,11 +50,13 @@ void					display_pile(t_pile *pile);
 ** SORTED_CHECK.C
 */
 void					sorted_check(t_pile *a, t_pile *b);
+int						sorted_check_ps(t_pile *a, t_pile *b);
 
 /*
 ** EXEC_CMD.C
 */
 int						exec_cmd(char *cmd, t_pile *a, t_pile *b);
+void					sort_exec(char *cmd, t_pile *a, t_pile *b);
 
 /*
 ** OPERATION.C
@@ -63,6 +65,10 @@ void					push_nb(t_pile *from, t_pile *to);
 void					swap_nb(t_pile *pile);
 void					rotate_nb(t_pile *pile, int len);
 void					reverse_rotate_nb(t_pile *pile, int len);
+/*
+** SORT.C
+*/
+void					sort_pile(t_pile *a, t_pile *b);
 
 /*
 ** FREE.C

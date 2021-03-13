@@ -1,6 +1,6 @@
 #include "../include/pile.h"
 
-char	**add_cmd(char **cmds_array, char *cmd)
+char	**ft_append_tab(char **cmds_array, char *cmd)
 {
 	char	**new_array;
 	int		len;
@@ -26,8 +26,10 @@ char	**add_cmd(char **cmds_array, char *cmd)
 void	analyze_cmds(char **cmds_array, t_pile *a, t_pile *b)
 {
 	int		i;
+	int		move;
 
 	i = 0;
+	move = 0;
 	while (cmds_array[i])
 	{
 		if (exec_cmd(cmds_array[i], a, b) == -1)
@@ -38,8 +40,12 @@ void	analyze_cmds(char **cmds_array, t_pile *a, t_pile *b)
 			printf("Error\n");
 			exit(1);
 		}
+		printf("move : %s\n", cmds_array[i]);
+		display_pile(a);
+		move++;
 		i++;
 	}
+	printf("MOVE : %d\n", move);
 	free_tab(cmds_array);
 }
 
@@ -56,14 +62,12 @@ void	read_cmd(t_pile *a, t_pile *b)
 			free(cmd);
 			break ;
 		}
-		cmds_array = add_cmd(cmds_array, cmd);
+		cmds_array = ft_append_tab(cmds_array, cmd);
 		free(cmd);
 		cmd = NULL;
 	}
 	if (cmds_array != NULL)
 		analyze_cmds(cmds_array, a, b);
-	display_pile(a);
-	display_pile(b);
 	sorted_check(a, b);
 	free_pile(a);
 	free_pile(b);

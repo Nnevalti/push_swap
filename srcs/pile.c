@@ -5,10 +5,7 @@ t_pile		*init_pile(void)
 	t_pile	*pile;
 
 	if (!(pile = malloc(sizeof(t_pile))))
-	{
-		printf("Malloc failed\n");
-		exit(-1);
-	}
+		return (NULL);
 	pile->first = NULL;
 	return (pile);
 }

@@ -44,3 +44,9 @@ int		exec_cmd(char *cmd, t_pile *a, t_pile *b)
 		return (-1);
 	return (1);
 }
+
+void	sort_exec(char *cmd, t_pile *a, t_pile *b)
+{
+	exec_cmd(cmd, a, b);
+	printf("%s\n", cmd);
+}
