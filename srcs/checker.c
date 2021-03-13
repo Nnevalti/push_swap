@@ -1,56 +1,54 @@
 #include "../include/pile.h"
 
-int		exec_cmd2(char *cmd, t_pile *a, t_pile *b)
+char	**add_cmd(char **cmds_array, char *cmd)
 {
-	if (!ft_strcmp(cmd, "ra"))
-		rotate_nb(a, pile_length(a));
-	else if (!ft_strcmp(cmd, "rb"))
-		rotate_nb(b, pile_length(b));
-	else if (!ft_strcmp(cmd, "rr"))
+	char	**new_array;
+	int		len;
+	int		i;
+
+	len = ft_tablen(cmds_array) + 1;
+	if (!(new_array = malloc(sizeof(char *) * (len + 1))))
+		return (NULL);
+	i = 0;
+	while (cmds_array != NULL && cmds_array[i])
 	{
-		rotate_nb(a, pile_length(a));
-		rotate_nb(b, pile_length(b));
+		new_array[i] = ft_strdup(cmds_array[i]);
+		i++;
 	}
-	else if (!ft_strcmp(cmd, "rra"))
-		reverse_rotate_nb(a, pile_length(a));
-	else if (!ft_strcmp(cmd, "rrb"))
-		reverse_rotate_nb(b, pile_length(b));
-	else if (!ft_strcmp(cmd, "rrr"))
-	{
-		reverse_rotate_nb(a, pile_length(a));
-		reverse_rotate_nb(b, pile_length(b));
-	}
-	else
-		return (-1);
-	return (1);
+	new_array[i] = ft_strdup(cmd);
+	i++;
+	new_array[i] = NULL;
+	if (cmds_array != NULL)
+		free_tab(cmds_array);
+	return (new_array);
 }
 
-int		exec_cmd(char *cmd, t_pile *a, t_pile *b)
+void	analyze_cmds(char **cmds_array, t_pile *a, t_pile *b)
 {
-	(void)a;
-	(void)b;
-	if (!ft_strcmp(cmd, "sa"))
-		swap_nb(a);
-	else if (!ft_strcmp(cmd, "sb"))
-		swap_nb(b);
-	else if (!ft_strcmp(cmd, "ss"))
+	int		i;
+
+	i = 0;
+	while (cmds_array[i])
 	{
-		swap_nb(a);
-		swap_nb(b);
+		if (exec_cmd(cmds_array[i], a, b) == -1)
+		{
+			free_tab(cmds_array);
+			free_pile(a);
+			free_pile(b);
+			printf("Error\n");
+			exit(1);
+		}
+		i++;
 	}
-	else if (!ft_strcmp(cmd, "pa"))
-		push_nb(b, a);
-	else if (!ft_strcmp(cmd, "pb"))
-		push_nb(a, b);
-	else if (exec_cmd2(cmd, a, b) == -1)
-		return (-1);
-	return (1);
+	free_tab(cmds_array);
 }
 
 void	read_cmd(t_pile *a, t_pile *b)
 {
 	char	*cmd;
+	char	**cmds_array;
 
+	cmds_array = NULL;
 	while (42)
 	{
 		if (get_next_line(0, &cmd) == 0)
@@ -58,17 +56,12 @@ void	read_cmd(t_pile *a, t_pile *b)
 			free(cmd);
 			break ;
 		}
-		if (exec_cmd(cmd, a, b) == -1)
-		{
-			free(cmd);
-			free_pile(a);
-			free_pile(b);
-			printf("Error\n");
-			exit(1);
-		}
+		cmds_array = add_cmd(cmds_array, cmd);
 		free(cmd);
 		cmd = NULL;
 	}
+	if (cmds_array != NULL)
+		analyze_cmds(cmds_array, a, b);
 	display_pile(a);
 	display_pile(b);
 	sorted_check(a, b);
@@ -91,9 +84,7 @@ int		main(int ac, char **av)
 	b = init_pile();
 	i = ft_tablen(tab);
 	while (i-- > 0)
-	{
 		empiler(a, ft_atoi(tab[i]));
-	}
 	free_tab(tab);
 	read_cmd(a, b);
 	return (0);

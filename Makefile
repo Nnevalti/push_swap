@@ -6,7 +6,7 @@ BLUE=\033[0;34m
 SET=\033[0m
 
 CH_NAME			=	checker
-# PS_NAME			=	push_swap
+PS_NAME			=	push_swap
 
 CC				=	gcc
 CFLAGS			=	-Wall -Werror -Wextra -g
@@ -22,13 +22,20 @@ CH_SRCS			=	checker.c \
 					check_arg.c \
 					pile.c \
 					operation.c \
+					exec_cmd.c \
 					sorted_check.c
 
 CH_OBJS			=	$(addprefix $(OBJS_DIR)/, $(CH_SRCS:.c=.o))
 
 # PUSH_SWAP
-# PS_SRCS			=
-# PS_OBJS			=	$(addprefix $(OBJS_DIR)/, $(PS_SRCS:.c=.o))
+PS_SRCS			=	push_swap.c \
+					parsing.c \
+					free.c \
+					check_arg.c \
+					operation.c \
+					pile.c
+
+PS_OBJS			=	$(addprefix $(OBJS_DIR)/, $(PS_SRCS:.c=.o))
 
 # LIBFT
 LIBFT_DIR		=	./libft
@@ -36,7 +43,7 @@ LIBFT_INC		=	-I $(LIBFT_DIR)
 LIBFT_LNK		=	-L $(LIBFT_DIR) -lft
 LIBFT_LIB		=	$(addprefix $(LIBFT_DIR)/, libft.a)
 
-all				:	objs $(LIBFT_LIB) $(CH_NAME)
+all				:	objs $(LIBFT_LIB) $(CH_NAME) $(PS_NAME)
 
 objs			:
 					@mkdir -p $(OBJS_DIR)
@@ -54,17 +61,17 @@ $(CH_NAME)		:	$(CH_OBJS)
 					@$(CC) $(CH_OBJS) $(LIBFT_LNK) -lm -o $(CH_NAME)
 					@echo "$(GREEN)Checker is compiled !$(SET)"
 
-# $(CH_NAME)		:	$(PS_OBJS)
-# 					@echo "$(YELLOW)Compiling push_swap...$(SET)"
-# 					$(CC) $(PS_OBJS) $(LIBFT_LNK) -lm -o $(PS_NAME)
-# 					@echo "$(GREEN)Push_swap is compiled !$(SET)"
+$(PS_NAME)		:	$(PS_OBJS)
+					@echo "$(YELLOW)Compiling push_swap...$(SET)"
+					$(CC) $(PS_OBJS) $(LIBFT_LNK) -lm -o $(PS_NAME)
+					@echo "$(GREEN)Push_swap is compiled !$(SET)"
 
 clean			:
 					@rm -rf $(OBJS_DIR)
 					@make -C $(LIBFT_DIR) clean
 
 fclean			:	clean
-					@rm -f $(CH_NAME)
+					@rm -f $(CH_NAME) $(PS_NAME)
 					@make -C $(LIBFT_DIR) fclean
 
 re				:	fclean all

@@ -15,69 +15,63 @@
 int		ft_return(char **str, char **line)
 {
 	int		i;
+	char	*tmp;
 
 	i = 0;
-	while (*str && (*str)[i] != '\n' && (*str)[i] != '\0')
+	while ((*str)[i] != '\n' && (*str)[i] != '\0')
 		i++;
-	if (*str)
-		*line = ft_substr(*str, 0, i);
-	if (*str)
-		free(*str);
-	*str = NULL;
-	if (!*line)
+	*line = ft_substr(*str, 0, i);
+	if ((*str)[i] == '\n')
+		tmp = ft_strdup(&(*str)[i + 1]);
+	else
+		tmp = NULL;
+	free(*str);
+	*str = tmp;
+	if (!*str)
 		return (0);
 	return (1);
 }
 
-int		readline(int fd, char **str, char **buff)
+char	*ft_read(int fd, char *buff, char *str)
 {
-	int		res;
 	char	*tmp;
+	int		res;
 
-	while ((res = read(fd, *buff, BUFFER_SIZE)) > 0)
+	while ((res = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
-		(*buff)[res] = '\0';
-		if (!*str || !**str)
-			*str = ft_strdup(*buff);
+		buff[res] = '\0';
+		if (!str || !*str)
+		{
+			tmp = ft_strdup(buff);
+			free(str);
+			str = tmp;
+		}
 		else
 		{
-			tmp = ft_strjoin(*str, *buff);
-			free(*str);
-			*str = tmp;
+			tmp = ft_strjoin(str, buff);
+			free(str);
+			str = tmp;
 		}
-		if (ft_strchr(*str, '\n'))
-		{
+		if (ft_strchr(str, '\n'))
 			break ;
-		}
 	}
-	return (res);
-}
-
-int		ctrl_dpatch(char **str, char **line)
-{
-	free(*str);
-	*str = NULL;
-	*line = ft_strdup("");
-	write(1, "\n", 1);
-	return (1);
+	return (str);
 }
 
 int		get_next_line(int fd, char **line)
 {
-	int				res;
 	static char		*str;
 	char			*buff;
 
-	if (!(buff = (char *)malloc(BUFFER_SIZE + 1 * sizeof(char))))
+	if (!(buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (-1);
 	if (fd < 0 || !line || read(fd, buff, 0) < 0 || BUFFER_SIZE < 1)
+	{
+		free(buff);
 		return (-1);
-	res = readline(fd, &str, &buff);
+	}
+	str = ft_read(fd, buff, str);
 	free(buff);
-	if (res < 0)
-		return (-1);
-	if (str && !ft_strchr(str, '\n') && ft_strlen(str) != 0)
-		return (ctrl_dpatch(&str, line));
 	if (!str)
 	{
 		*line = ft_strdup("");

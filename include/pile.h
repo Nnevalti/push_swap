@@ -52,6 +52,11 @@ void					display_pile(t_pile *pile);
 void					sorted_check(t_pile *a, t_pile *b);
 
 /*
+** EXEC_CMD.C
+*/
+int						exec_cmd(char *cmd, t_pile *a, t_pile *b);
+
+/*
 ** OPERATION.C
 */
 void					push_nb(t_pile *from, t_pile *to);
