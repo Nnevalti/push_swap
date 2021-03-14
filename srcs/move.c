@@ -80,7 +80,7 @@ void	move_in_a_and_b(t_move *move, t_pile *a, t_pile *b, int pos, int nb)
 	}
 	else
 		move->move_in_both = 0;
-	move->total_move = move->move_in_a + move->move_in_b;
+	move->total_move = move->move_in_a + move->move_in_b + move->move_in_both;
 }
 
 t_move	*best_move_a_to_b(t_pile *a, t_pile *b)
