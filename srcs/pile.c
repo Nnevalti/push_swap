@@ -46,7 +46,7 @@ int			pile_length(t_pile *pile)
 	int			i;
 
 	i = 0;
-	if (pile == NULL)
+	if (pile->first == NULL)
 		return (0);
 	current = pile->first;
 	while (current)

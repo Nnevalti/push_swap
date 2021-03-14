@@ -18,5 +18,7 @@ int		main(int ac, char **av)
 		empiler(a, ft_atoi(tab[i]));
 	free_tab(tab);
 	sort_pile(a, b);
+	free_pile(a);
+	free_pile(b);
 	return (0);
 }

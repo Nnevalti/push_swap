@@ -1,110 +1,16 @@
 #include "../include/pile.h"
 
-int		find_biggest_nb(t_pile *pile)
-{
-	t_element	*current;
-	int			i;
-	int			pos;
-	int			nb;
-
-	current = pile->first;
-	nb = current->nb;
-	i = 0;
-	pos = 0;
-	while ((current = current->next) != NULL)
-	{
-		i++;
-		if (current->nb > nb)
-		{
-			nb = current->nb;
-			pos = i;
-		}
-	}
-	return (pos);
-}
-
-int		find_smallest_nb(t_pile *pile)
-{
-	t_element	*current;
-	int			i;
-	int			pos;
-	int			nb;
-
-	current = pile->first;
-	nb = current->nb;
-	i = 0;
-	pos = 0;
-	while ((current = current->next) != NULL)
-	{
-		i++;
-		if (current->nb < nb)
-		{
-			nb = current->nb;
-			pos = i;
-		}
-	}
-	return (pos);
-}
-
-int		find_place(t_pile *a, t_pile *b)
-{
-	t_element	*current;
-	int			i;
-	int			pos;
-	int			nb;
-	int			previous_nb;
-
-	current = a->first;
-	nb = b->first->nb;
-	i = 0;
-	pos = pile_length(a);
-	previous_nb = 0;
-	while (current)
-	{
-		if (nb > previous_nb && nb < current->nb)
-			pos = i;
-		i++;
-		previous_nb = current->nb;
-		current = current->next;
-	}
-	return (pos);
-}
-
 void	sort_3(t_pile *a, t_pile *b)
 {
 	int		pos;
 
-	pos = find_biggest_nb(a);
+	pos = find_biggest_nb_pos(a);
 	if (pos == 0)
 		sort_exec("ra", a, b);
 	else if (pos == 1)
 		sort_exec("rra", a, b);
 	if (a->first->nb > a->first->next->nb)
 		sort_exec("sa", a, b);
-}
-
-void	rotate_n_times(t_pile *a, t_pile *b, int pos)
-{
-	int		len;
-
-	len = pile_length(a);
-	if (pos <= len / 2)
-	{
-		while (pos != 0)
-		{
-			sort_exec("ra", a, b);
-			pos--;
-		}
-	}
-	else if (pos > len / 2)
-	{
-		while (pos != len)
-		{
-			sort_exec("rra", a, b);
-			pos++;
-		}
-	}
-	return ;
 }
 
 void	sort_5(t_pile *a, t_pile *b)
@@ -117,7 +23,7 @@ void	sort_5(t_pile *a, t_pile *b)
 	len = pile_length(a);
 	while (i < len - 3)
 	{
-		pos = find_smallest_nb(a);
+		pos = find_smallest_nb_pos(a);
 		rotate_n_times(a, b, pos);
 		sort_exec("pb", a, b);
 		i++;
@@ -130,10 +36,55 @@ void	sort_5(t_pile *a, t_pile *b)
 	}
 }
 
-// void	sort_all(t_pile *a, t_pile *b)
-// {
-// 	while ()
-// }
+void	put_back_in_a(t_pile *a, t_pile *b)
+{
+	int		pos;
+	int		len;
+	int		move;
+
+	pos = find_biggest_nb_pos(b);
+	len = pile_length(b);
+	if (pos >= len / 2)
+	{
+		move = len - pos;
+		while (move != 0)
+		{
+			sort_exec("rrb", a, b);
+			move--;
+		}
+	}
+	else
+	{
+		move = pos;
+		while (move != 0)
+		{
+			sort_exec("rb", a, b);
+			move--;
+		}
+	}
+	while (pile_length(b) != 0)
+	{
+		sort_exec("pa", a, b);
+	}
+}
+
+void	sort_all(t_pile *a, t_pile *b)
+{
+	// int		optimizer;
+	t_move	*best_move;
+
+	// optimizer = pile_length(a) > 200 ? 50 : 2;
+	// optimizer = 0;
+	sort_exec("pb", a, b);
+	sort_exec("pb", a, b);
+	while (pile_length(a) > 0)
+	{
+		best_move = best_move_a_to_b(a, b);
+		exec_best_move(best_move, a, b);
+		free_move(best_move);
+	}
+	put_back_in_a(a, b);
+}
 
 void	sort_pile(t_pile *a, t_pile *b)
 {
@@ -148,6 +99,7 @@ void	sort_pile(t_pile *a, t_pile *b)
 		sort_3(a, b);
 	else if (len > 3 && len <= 5)
 		sort_5(a, b);
-	// else if (len > 5)
-	// 	sort_all(a, b);
+	else if (len > 5)
+		sort_all(a, b);
+	return ;
 }

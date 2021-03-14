@@ -27,6 +27,15 @@ typedef struct			s_pile
 	t_element			*first;
 }						t_pile;
 
+typedef struct			s_sort
+{
+	int		move_in_a;
+	int		move_in_b;
+	int		move_in_both;
+	int		rotate_r_in_a;
+	int		rotate_r_in_b;
+	int		total_move;
+}						t_move;
 /*
 ** CHECK_ARG.C
 */
@@ -57,6 +66,7 @@ int						sorted_check_ps(t_pile *a, t_pile *b);
 */
 int						exec_cmd(char *cmd, t_pile *a, t_pile *b);
 void					sort_exec(char *cmd, t_pile *a, t_pile *b);
+void					exec_best_move(t_move *best_move, t_pile *a, t_pile *b);
 
 /*
 ** OPERATION.C
@@ -71,9 +81,23 @@ void					reverse_rotate_nb(t_pile *pile, int len);
 void					sort_pile(t_pile *a, t_pile *b);
 
 /*
+** SORT_UTILS.C
+*/
+void					rotate_n_times(t_pile *a, t_pile *b, int pos);
+int						find_biggest_nb_pos(t_pile *pile);
+int						find_smallest_nb_pos(t_pile *pile);
+int						find_place_in_b(int nb, t_pile *b);
+/*
+** MOVE.C
+*/
+t_move					*init_move(void);
+t_move					*best_move_a_to_b(t_pile *a, t_pile *b);
+
+/*
 ** FREE.C
 */
 void					free_pile(t_pile *pile);
 void					free_tab(char **tab);
+void					free_move(t_move *sort);
 
 #endif
