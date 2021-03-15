@@ -42,16 +42,24 @@ typedef struct			s_sort
 	t_bool	rotate_r_in_b;
 	int		total_move;
 }						t_move;
+
+typedef struct			s_flags
+{
+	t_bool		reverse;
+	t_bool		visual;
+	t_bool		color;
+}						t_flags;
 /*
 ** CHECK_ARG.C
 */
 void					check_arg(char **av);
+void					check_arg_checker(char **tab, t_flags *flags);
 
 /*
 ** PARSING.C
 */
-char					**parse_arg(char **av);
-
+char					**parse_arg_push_swap(char **av);
+char					**parse_arg_checker(char **av, int ac, t_flags *flags);
 /*
 **	PILE.C
 */
@@ -122,5 +130,16 @@ void					move_in_b(t_move *move, int nb, t_pile *b);
 void					free_pile(t_pile *pile);
 void					free_tab(char **tab);
 void					free_move(t_move *sort);
+
+/*
+** FLAGS.C
+*/
+t_flags					*init_flags(void);
+int						check_for_flags_checker(char **av, t_flags *flags);
+
+/*
+** VISUAL.C
+*/
+void					visual(t_pile *a, t_pile *b, t_flags *flags, char *cmd);
 
 #endif

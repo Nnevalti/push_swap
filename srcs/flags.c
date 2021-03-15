@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   flags.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vdescham <vdescham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/15 17:30:09 by vdescham          #+#    #+#             */
-/*   Updated: 2021/03/15 17:30:10 by vdescham         ###   ########.fr       */
+/*   Created: 2021/03/16 00:46:41 by vdescham          #+#    #+#             */
+/*   Updated: 2021/03/16 00:46:42 by vdescham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pile.h"
 
-int		main(int ac, char **av)
+t_flags		*init_flags(void)
 {
-	t_pile	*a;
-	t_pile	*b;
-	char	**tab;
-	int		i;
+	t_flags	*flags;
 
-	if (ac <= 1)
-		exit(1);
-	tab = parse_arg_push_swap(av);
-	check_arg(tab);
-	a = init_pile();
-	b = init_pile();
-	i = ft_tablen(tab);
-	while (i-- > 0)
-		empiler(a, ft_atoi(tab[i]));
-	free_tab(tab);
-	sort_pile(a, b);
-	free_pile(a);
-	free_pile(b);
-	return (0);
+	if (!(flags = malloc(sizeof(t_flags))))
+		return (NULL);
+	flags->reverse = FALSE;
+	flags->visual = FALSE;
+	flags->color = FALSE;
+	return (flags);
+}
+
+int			check_for_flags_checker(char **av, t_flags *flags)
+{
+	if (av[1] && !ft_strcmp("-v", av[1]))
+	{
+		flags->visual = TRUE;
+		if (av[2] && !ft_strcmp("-c", av[2]))
+		{
+			flags->color = TRUE;
+			return (3);
+		}
+		return (2);
+	}
+	return (1);
 }

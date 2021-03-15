@@ -53,6 +53,12 @@ verification_and_set_options()
 			NBTEST=$1
 		fi
 	fi
+	if [ -e "status.log" ]; then
+		rm -f status.log
+	fi
+	if [ -e "op.log" ]; then
+		rm -f op.log
+	fi
 }
 
 display_header()

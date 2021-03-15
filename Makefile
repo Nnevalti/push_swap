@@ -9,7 +9,7 @@ CH_NAME			=	checker
 PS_NAME			=	push_swap
 
 CC				=	gcc
-CFLAGS			=	-Wall -Werror -Wextra -g
+CFLAGS			=	-g -Wall -Werror -Wextra -g
 
 INC_DIR			=	./include
 SRCS_DIR		=	./srcs
@@ -23,7 +23,10 @@ CH_SRCS			=	checker.c \
 					free.c \
 					exec_cmd.c \
 					operation.c \
-					sorted_check.c
+					sorted_check.c \
+					sort_utils.c \
+					visual.c \
+					flags.c
 
 CH_OBJS			=	$(addprefix $(OBJS_DIR)/, $(CH_SRCS:.c=.o))
 
@@ -40,6 +43,7 @@ PS_SRCS			=	push_swap.c \
 					sort_utils2.c \
 					move.c \
 					move_utils.c \
+					flags.c \
 					sorted_check.c
 
 PS_OBJS			=	$(addprefix $(OBJS_DIR)/, $(PS_SRCS:.c=.o))

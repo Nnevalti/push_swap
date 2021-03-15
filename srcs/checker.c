@@ -35,7 +35,7 @@ char	**ft_append_tab(char **cmds_array, char *cmd)
 	return (new_array);
 }
 
-void	analyze_cmds(char **cmds_array, t_pile *a, t_pile *b)
+void	analyze_cmds(char **cmds_array, t_pile *a, t_pile *b,t_flags *flags)
 {
 	int		i;
 	int		move;
@@ -49,17 +49,23 @@ void	analyze_cmds(char **cmds_array, t_pile *a, t_pile *b)
 			free_tab(cmds_array);
 			free_pile(a);
 			free_pile(b);
+			free(flags);
 			printf("Error\n");
 			exit(1);
 		}
-		move++;
+		if (flags->visual == TRUE)
+		{
+			move++;
+			visual(a, b, flags, cmds_array[i]);
+			printf("MOVE : %d\n", move);
+			system("sleep 0.01");
+		}
 		i++;
 	}
-	// printf("MOVE : %d\n", move - 100);
 	free_tab(cmds_array);
 }
 
-void	read_cmd(t_pile *a, t_pile *b)
+void	read_cmd(t_pile *a, t_pile *b, t_flags *flags)
 {
 	char	*cmd;
 	char	**cmds_array;
@@ -77,7 +83,7 @@ void	read_cmd(t_pile *a, t_pile *b)
 		cmd = NULL;
 	}
 	if (cmds_array != NULL)
-		analyze_cmds(cmds_array, a, b);
+		analyze_cmds(cmds_array, a, b, flags);
 	sorted_check(a, b);
 	free_pile(a);
 	free_pile(b);
@@ -87,19 +93,22 @@ int		main(int ac, char **av)
 {
 	t_pile	*a;
 	t_pile	*b;
+	t_flags	*flags;
 	char	**tab;
 	int		i;
 
 	if (ac <= 1)
 		exit(1);
-	tab = parse_arg(av);
-	check_arg(tab);
+	flags = init_flags();
+	tab = parse_arg_checker(av, ac, flags);
+	check_arg_checker(tab, flags);
 	a = init_pile();
 	b = init_pile();
 	i = ft_tablen(tab);
 	while (i-- > 0)
 		empiler(a, ft_atoi(tab[i]));
 	free_tab(tab);
-	read_cmd(a, b);
+	read_cmd(a, b, flags);
+	free(flags);
 	return (0);
 }

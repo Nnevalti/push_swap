@@ -71,3 +71,24 @@ void	check_arg(char **tab)
 	}
 	return ;
 }
+
+void	check_arg_checker(char **tab, t_flags *flags)
+{
+	int		i;
+
+	i = 0;
+	while (tab[i])
+	{
+		if (check_isnum(tab[i]) == -1
+			|| isinteger(tab[i]) == -1
+			|| check_double(tab, i) == -1)
+		{
+			free_tab(tab);
+			free(flags);
+			printf("Error\n");
+			exit(1);
+		}
+		i++;
+	}
+	return ;
+}
