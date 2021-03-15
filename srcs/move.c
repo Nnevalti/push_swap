@@ -39,7 +39,7 @@ void	move_in_b(t_move *move, int nb, t_pile *b)
 	int		pos;
 
 	len = pile_length(b);
-	pos = find_place_in_b(nb, b);
+	pos = find_place_in_pile_descending(nb, b);
 	if (pos >= len / 2)
 	{
 		move->move_in_b = len - pos;

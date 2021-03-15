@@ -102,22 +102,46 @@ int		find_max_nb(t_pile *pile)
 	return (nb);
 }
 
-int		find_place_in_b(int nb, t_pile *b)
+int		find_place_in_pile_descending(int nb, t_pile *pile)
 {
 	t_element	*current;
 	int			pos;
 	int			previous_nb;
 
 	pos = 0;
-	current = b->first;
-	if (nb > find_max_nb(b))
-		return (find_biggest_nb_pos(b));
-	if (nb < find_min_nb(b))
-		return (find_smallest_nb_pos(b) + 1);
-	previous_nb = b->first->nb;
+	current = pile->first;
+	if (nb > find_max_nb(pile))
+		return (find_biggest_nb_pos(pile));
+	if (nb < find_min_nb(pile))
+		return (find_smallest_nb_pos(pile) + 1);
+	previous_nb = pile->first->nb;
 	while (current)
 	{
 		if (previous_nb > nb && nb > current->nb)
+			return (pos);
+		previous_nb = current->nb;
+		current = current->next;
+		pos++;
+	}
+	return (0);
+}
+
+int		find_place_in_pile_ascending(int nb, t_pile *pile)
+{
+	t_element	*current;
+	int			pos;
+	int			previous_nb;
+
+	pos = 0;
+	current = pile->first;
+	if (nb > find_max_nb(pile))
+		return (find_biggest_nb_pos(pile) + 1);
+	if (nb < find_min_nb(pile))
+		return (find_smallest_nb_pos(pile));
+	previous_nb = pile->first->nb;
+	while (current)
+	{
+		if (previous_nb < nb && nb < current->nb)
 			return (pos);
 		previous_nb = current->nb;
 		current = current->next;

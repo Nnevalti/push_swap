@@ -92,7 +92,8 @@ void					sort_pile(t_pile *a, t_pile *b);
 void					rotate_n_times(t_pile *a, t_pile *b, int pos);
 int						find_biggest_nb_pos(t_pile *pile);
 int						find_smallest_nb_pos(t_pile *pile);
-int						find_place_in_b(int nb, t_pile *b);
+int						find_place_in_pile_ascending(int nb, t_pile *b);
+int						find_place_in_pile_descending(int nb, t_pile *b);
 /*
 ** MOVE.C
 */

@@ -36,50 +36,79 @@ void	sort_5(t_pile *a, t_pile *b)
 	}
 }
 
+void	final_rotate(t_pile *a, t_pile *b)
+{
+	int		pos;
+	int		move;
+
+	pos = find_smallest_nb_pos(a);
+	if (pos >= pile_length(a) / 2)
+		move = pile_length(a) - pos;
+	else if (pos < pile_length(a) / 2)
+		move = pos;
+	while (move > 0)
+	{
+		if (pos >= pile_length(a) / 2)
+			sort_exec("rra", a, b);
+		else if (pos < pile_length(a) / 2)
+			sort_exec("ra", a, b);
+		move--;
+	}
+	return ;
+}
+
 void	push_back_in_a(t_pile *a, t_pile *b)
 {
 	int		pos;
-	int		len;
 	int		move;
 
-	pos = find_biggest_nb_pos(b);
-	len = pile_length(b);
-	if (pos >= len / 2)
+	while (pile_length(b) > 0)
 	{
-		move = len - pos;
-		while (move != 0)
+		pos = find_place_in_pile_ascending(b->first->nb, a);
+		if (pos >= pile_length(a) / 2)
+			move = pile_length(a) - pos;
+		else if (pos < pile_length(a) / 2)
+			move = pos;
+		while (move > 0)
 		{
-			sort_exec("rrb", a, b);
+			if (pos >= pile_length(a) / 2)
+				sort_exec("rra", a, b);
+			else if (pos < pile_length(a) / 2)
+				sort_exec("ra", a, b);
 			move--;
 		}
-	}
-	else
-	{
-		move = pos;
-		while (move != 0)
-		{
-			sort_exec("rb", a, b);
-			move--;
-		}
-	}
-	while (pile_length(b) != 0)
-	{
 		sort_exec("pa", a, b);
 	}
+	final_rotate(a, b);
+	return ;
 }
 
-// void	optimizer_push(t_pile *a, t_pile *b)
-// {
-//
-// }
+
+void	optimizer_push(t_pile *a, t_pile *b)
+{
+	int		pos;
+
+	pos = 0;
+	while (pile_length(a) > 2)
+	{
+		pos = find_smallest_nb_pos(a);
+		if (pos == 0)
+			sort_exec("pb", a, b);
+		else if (pos >= pile_length(a) / 2)
+			sort_exec("rra", a, b);
+		else if (pos < pile_length(a) / 2)
+			sort_exec("ra", a, b);
+	}
+	return ;
+}
 
 void	sort_all(t_pile *a, t_pile *b)
 {
 	int		optimizer;
 	t_move	*best_move;
 
-	// optimizer = pile_length(a) > 200 ? 50 : 2;
-	optimizer = 0;
+	optimizer = pile_length(a) > 200 ? 50 : 2;
+	// optimizer = 0;
 	sort_exec("pb", a, b);
 	sort_exec("pb", a, b);
 	while (pile_length(a) > optimizer)
@@ -88,7 +117,7 @@ void	sort_all(t_pile *a, t_pile *b)
 		exec_best_move(best_move, a, b);
 		free_move(best_move);
 	}
-	// optimizer_push(a, b);
+	optimizer_push(a, b);
 	push_back_in_a(a, b);
 }
 
