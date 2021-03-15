@@ -37,7 +37,9 @@ PS_SRCS			=	push_swap.c \
 					operation.c \
 					sort.c \
 					sort_utils.c \
+					sort_utils2.c \
 					move.c \
+					move_utils.c \
 					sorted_check.c
 
 PS_OBJS			=	$(addprefix $(OBJS_DIR)/, $(PS_SRCS:.c=.o))

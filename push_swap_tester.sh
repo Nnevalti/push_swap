@@ -18,6 +18,7 @@ MOVEMAX=0
 MOVEMIN=0
 MOVETMP=0
 MOVE=0
+ERROR=0
 RESULT=$BOLD$YELLOW"RANGE: CORRECT_ANSWERS: AVERAGE_NB_MOVE: MIN_MOVE: MAX_MOVE:\n"$SET
 
 verification_and_set_options()
@@ -50,7 +51,6 @@ verification_and_set_options()
 			exit 1
 		else
 			NBTEST=$1
-			echo "nbtest = "$NBTEST
 		fi
 	fi
 }
@@ -105,7 +105,7 @@ display_progress()
 
 display_progress_check()
 {
-	if [ $? -eq 0 ]; then
+	if [ $ERROR -eq 0 ]; then
 		printf "\033[2K"
 		echo $GREEN"RANGE 1-$RANGE\t [ ✅]$SET"
 		printf "\033[2K"
@@ -114,6 +114,7 @@ display_progress_check()
 		echo $RED"RANGE 1-$RANGE\t [ ❌]$SET"
 		printf "\033[2K"
 	fi
+	ERROR=0
 }
 
 calc_result()
@@ -163,7 +164,9 @@ do
 	while [ "$LOOP" != "$NBTEST" ]; do
 		display_progress
 		ARG=`ruby -e "puts (1..$RANGE).to_a.shuffle.join(' ')"`; ./push_swap $ARG > op.log
+		ERROR=$?
 		./checker $ARG < op.log >> status.log
+		ERROR=$((ERROR+$?))
 		calc_move_min_and_max
 		LOOP=$((LOOP+1))
 	done

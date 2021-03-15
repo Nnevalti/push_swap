@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_cmd.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vdescham <vdescham@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/15 17:28:11 by vdescham          #+#    #+#             */
+/*   Updated: 2021/03/15 17:28:13 by vdescham         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/pile.h"
 
 int		exec_cmd2(char *cmd, t_pile *a, t_pile *b)
@@ -45,7 +57,6 @@ int		exec_cmd(char *cmd, t_pile *a, t_pile *b)
 	return (1);
 }
 
-
 void	sort_exec(char *cmd, t_pile *a, t_pile *b)
 {
 	exec_cmd(cmd, a, b);
@@ -54,7 +65,6 @@ void	sort_exec(char *cmd, t_pile *a, t_pile *b)
 
 void	exec_best_move(t_move *best_move, t_pile *a, t_pile *b)
 {
-
 	while (best_move->move_in_both > 0)
 	{
 		if (best_move->rotate_r_in_a == TRUE
@@ -64,21 +74,19 @@ void	exec_best_move(t_move *best_move, t_pile *a, t_pile *b)
 			sort_exec("rr", a, b);
 		best_move->move_in_both--;
 	}
-	while (best_move->move_in_a > 0)
+	while (best_move->move_in_a-- > 0)
 	{
 		if (best_move->rotate_r_in_a == TRUE)
 			sort_exec("rra", a, b);
 		else
 			sort_exec("ra", a, b);
-		best_move->move_in_a--;
 	}
-	while (best_move->move_in_b > 0)
+	while (best_move->move_in_b-- > 0)
 	{
 		if (best_move->rotate_r_in_b == TRUE)
 			sort_exec("rrb", a, b);
 		else
 			sort_exec("rb", a, b);
-		best_move->move_in_b--;
 	}
 	sort_exec("pb", a, b);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vdescham <vdescham@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/15 17:27:22 by vdescham          #+#    #+#             */
+/*   Updated: 2021/03/15 17:27:27 by vdescham         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/pile.h"
 
 void	sort_3(t_pile *a, t_pile *b)
@@ -36,54 +48,6 @@ void	sort_5(t_pile *a, t_pile *b)
 	}
 }
 
-void	final_rotate(t_pile *a, t_pile *b)
-{
-	int		pos;
-	int		move;
-
-	pos = find_smallest_nb_pos(a);
-	if (pos >= pile_length(a) / 2)
-		move = pile_length(a) - pos;
-	else if (pos < pile_length(a) / 2)
-		move = pos;
-	while (move > 0)
-	{
-		if (pos >= pile_length(a) / 2)
-			sort_exec("rra", a, b);
-		else if (pos < pile_length(a) / 2)
-			sort_exec("ra", a, b);
-		move--;
-	}
-	return ;
-}
-
-void	push_back_in_a(t_pile *a, t_pile *b)
-{
-	int		pos;
-	int		move;
-
-	while (pile_length(b) > 0)
-	{
-		pos = find_place_in_pile_ascending(b->first->nb, a);
-		if (pos >= pile_length(a) / 2)
-			move = pile_length(a) - pos;
-		else if (pos < pile_length(a) / 2)
-			move = pos;
-		while (move > 0)
-		{
-			if (pos >= pile_length(a) / 2)
-				sort_exec("rra", a, b);
-			else if (pos < pile_length(a) / 2)
-				sort_exec("ra", a, b);
-			move--;
-		}
-		sort_exec("pa", a, b);
-	}
-	final_rotate(a, b);
-	return ;
-}
-
-
 void	optimizer_push(t_pile *a, t_pile *b)
 {
 	int		pos;
@@ -108,7 +72,6 @@ void	sort_all(t_pile *a, t_pile *b)
 	t_move	*best_move;
 
 	optimizer = pile_length(a) > 200 ? 50 : 2;
-	// optimizer = 0;
 	sort_exec("pb", a, b);
 	sort_exec("pb", a, b);
 	while (pile_length(a) > optimizer)

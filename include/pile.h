@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pile.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vdescham <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vdescham <vdescham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/12 16:06:37 by vdescham          #+#    #+#             */
-/*   Updated: 2021/03/12 12:24:20 by vdescham         ###   ########.fr       */
+/*   Created: 2021/03/15 18:15:42 by vdescham          #+#    #+#             */
+/*   Updated: 2021/03/15 18:15:44 by vdescham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,29 @@ void					sort_pile(t_pile *a, t_pile *b);
 void					rotate_n_times(t_pile *a, t_pile *b, int pos);
 int						find_biggest_nb_pos(t_pile *pile);
 int						find_smallest_nb_pos(t_pile *pile);
+int						find_min_nb(t_pile *pile);
+int						find_max_nb(t_pile *pile);
+
+/*
+** SORT_UTILS2.C
+*/
 int						find_place_in_pile_ascending(int nb, t_pile *b);
 int						find_place_in_pile_descending(int nb, t_pile *b);
+void					final_rotate(t_pile *a, t_pile *b);
+void					push_back_in_a(t_pile *a, t_pile *b);
+
 /*
 ** MOVE.C
 */
 t_move					*init_move(void);
 t_move					*best_move_a_to_b(t_pile *a, t_pile *b);
+
+/*
+** MOVE_UTILS.C
+*/
+t_move					*init_move(void);
+void					move_in_a(t_move *move, int pos, t_pile *a);
+void					move_in_b(t_move *move, int nb, t_pile *b);
 
 /*
 ** FREE.C
