@@ -40,13 +40,10 @@ void	analyze_cmds(char **cmds_array, t_pile *a, t_pile *b)
 			printf("Error\n");
 			exit(1);
 		}
-		// printf("move : %s\n", cmds_array[i]);
-		// display_pile(a);
-		// display_pile(b);
 		move++;
 		i++;
 	}
-	printf("MOVE : %d\n", move);
+	// printf("MOVE : %d\n", move - 100);
 	free_tab(cmds_array);
 }
 
