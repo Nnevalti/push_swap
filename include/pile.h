@@ -16,6 +16,12 @@
 # include <stdlib.h>
 # include "../libft/include/libft.h"
 
+typedef enum			e_bool
+{
+	FALSE,
+	TRUE
+}						t_bool;
+
 typedef struct			s_element
 {
 	int					nb;
@@ -32,8 +38,8 @@ typedef struct			s_sort
 	int		move_in_a;
 	int		move_in_b;
 	int		move_in_both;
-	int		rotate_r_in_a;
-	int		rotate_r_in_b;
+	t_bool	rotate_r_in_a;
+	t_bool	rotate_r_in_b;
 	int		total_move;
 }						t_move;
 /*

@@ -20,13 +20,17 @@ BLUE='\033[0;34m'
 SET='\033[0m'
 
 cd $PS_DIR
-if [ ! -e "push_swap" -o ! -e "checker" ]; then
+if [ ! -e "push_swap" ] || [ ! -e "checker" ]; then
 	echo "Push swap or checker not found trying to build project..."
 	if [ ! -e "Makefile" ]; then
 		echo "Makefile not found exiting."
 		exit
 	fi
 	make
+	if [ $? -ne 0 ]; then
+		echo "Push_swap_tester: Make failed: exiting."
+		exit 1
+	fi
 fi
 
 if [ -n "$1" ]; then

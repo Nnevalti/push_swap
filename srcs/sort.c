@@ -36,7 +36,7 @@ void	sort_5(t_pile *a, t_pile *b)
 	}
 }
 
-void	put_back_in_a(t_pile *a, t_pile *b)
+void	push_back_in_a(t_pile *a, t_pile *b)
 {
 	int		pos;
 	int		len;
@@ -68,22 +68,28 @@ void	put_back_in_a(t_pile *a, t_pile *b)
 	}
 }
 
+// void	optimizer_push(t_pile *a, t_pile *b)
+// {
+//
+// }
+
 void	sort_all(t_pile *a, t_pile *b)
 {
-	// int		optimizer;
+	int		optimizer;
 	t_move	*best_move;
 
 	// optimizer = pile_length(a) > 200 ? 50 : 2;
-	// optimizer = 0;
+	optimizer = 0;
 	sort_exec("pb", a, b);
 	sort_exec("pb", a, b);
-	while (pile_length(a) > 0)
+	while (pile_length(a) > optimizer)
 	{
 		best_move = best_move_a_to_b(a, b);
 		exec_best_move(best_move, a, b);
 		free_move(best_move);
 	}
-	put_back_in_a(a, b);
+	// optimizer_push(a, b);
+	push_back_in_a(a, b);
 }
 
 void	sort_pile(t_pile *a, t_pile *b)
