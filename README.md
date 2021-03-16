@@ -42,7 +42,11 @@
 
 ## exec programs:
 
-> ./push_swap $ARG | ./checker $ARG
+---
+
+ ./push_swap $ARG | ./checker $ARG
+
+---
 
 # push_swap_tester.sh
 
