@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pile.h"
+#include "../include/stack.h"
 
-void	free_pile(t_pile *pile)
+void	free_pile(t_pile *stack)
 {
 	t_element	*current;
 	t_element	*element;
 
-	current = pile->first;
+	current = stack->first;
 	while (current)
 	{
 		element = current;
@@ -25,7 +25,7 @@ void	free_pile(t_pile *pile)
 		free(element);
 	}
 	free(current);
-	free(pile);
+	free(stack);
 	return ;
 }
 

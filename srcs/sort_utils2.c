@@ -10,21 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pile.h"
+#include "../include/stack.h"
 
-int		find_place_in_pile_descending(int nb, t_pile *pile)
+int		find_place_in_pile_descending(int nb, t_pile *stack)
 {
 	t_element	*current;
 	int			pos;
 	int			previous_nb;
 
 	pos = 0;
-	current = pile->first;
-	if (nb > find_max_nb(pile))
-		return (find_biggest_nb_pos(pile));
-	if (nb < find_min_nb(pile))
-		return (find_smallest_nb_pos(pile) + 1);
-	previous_nb = pile->first->nb;
+	current = stack->first;
+	if (nb > find_max_nb(stack))
+		return (find_biggest_nb_pos(stack));
+	if (nb < find_min_nb(stack))
+		return (find_smallest_nb_pos(stack) + 1);
+	previous_nb = stack->first->nb;
 	while (current)
 	{
 		if (previous_nb > nb && nb > current->nb)
@@ -36,19 +36,19 @@ int		find_place_in_pile_descending(int nb, t_pile *pile)
 	return (0);
 }
 
-int		find_place_in_pile_ascending(int nb, t_pile *pile)
+int		find_place_in_pile_ascending(int nb, t_pile *stack)
 {
 	t_element	*current;
 	int			pos;
 	int			previous_nb;
 
 	pos = 0;
-	current = pile->first;
-	if (nb > find_max_nb(pile))
-		return (find_biggest_nb_pos(pile) + 1);
-	if (nb < find_min_nb(pile))
-		return (find_smallest_nb_pos(pile));
-	previous_nb = pile->first->nb;
+	current = stack->first;
+	if (nb > find_max_nb(stack))
+		return (find_biggest_nb_pos(stack) + 1);
+	if (nb < find_min_nb(stack))
+		return (find_smallest_nb_pos(stack));
+	previous_nb = stack->first->nb;
 	while (current)
 	{
 		if (previous_nb < nb && nb < current->nb)

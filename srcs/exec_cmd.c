@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pile.h"
+#include "../include/stack.h"
 
 int		exec_cmd2(char *cmd, t_pile *a, t_pile *b)
 {

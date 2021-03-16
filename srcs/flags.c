@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pile.h"
+#include "../include/stack.h"
 
 t_flags		*init_flags(void)
 {
@@ -20,21 +20,23 @@ t_flags		*init_flags(void)
 		return (NULL);
 	flags->reverse = FALSE;
 	flags->visual = FALSE;
-	flags->color = FALSE;
 	return (flags);
 }
 
 int			check_for_flags_checker(char **av, t_flags *flags)
 {
-	if (av[1] && !ft_strcmp("-v", av[1]))
+	int		i;
+
+	i = 1;
+	while (av[i] && i < 4)
 	{
-		flags->visual = TRUE;
-		if (av[2] && !ft_strcmp("-c", av[2]))
-		{
-			flags->color = TRUE;
-			return (3);
-		}
-		return (2);
+		if (!ft_strcmp("-r", av[i]))
+			flags->reverse = TRUE;
+		else if (!ft_strcmp("-v", av[i]))
+			flags->visual = TRUE;
+		else
+			return (i);
+		i++;
 	}
-	return (1);
+	return (i);
 }

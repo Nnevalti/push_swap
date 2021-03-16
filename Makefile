@@ -17,34 +17,41 @@ OBJS_DIR		=	./objs
 
 # CHECKER
 CH_SRCS			=	checker.c \
+					flags.c \
 					parsing.c \
 					check_arg.c \
-					pile.c \
+					stack.c \
 					free.c \
 					exec_cmd.c \
 					operation.c \
 					sorted_check.c \
+					sorted_check_reverse.c \
 					sort_utils.c \
 					visual.c \
-					flags.c
+					sorted_check_visual.c
 
 CH_OBJS			=	$(addprefix $(OBJS_DIR)/, $(CH_SRCS:.c=.o))
 
 # PUSH_SWAP
 PS_SRCS			=	push_swap.c \
+					flags.c \
 					parsing.c \
 					check_arg.c \
-					pile.c \
+					stack.c \
 					free.c \
-					exec_cmd.c \
-					operation.c \
 					sort.c \
+					sort_reverse.c \
+					sort_utils_reverse.c \
 					sort_utils.c \
 					sort_utils2.c \
 					move.c \
+					move_reverse.c \
 					move_utils.c \
-					flags.c \
-					sorted_check.c
+					move_utils_reverse.c \
+					operation.c \
+					exec_cmd.c \
+					sorted_check.c \
+					sorted_check_reverse.c
 
 PS_OBJS			=	$(addprefix $(OBJS_DIR)/, $(PS_SRCS:.c=.o))
 

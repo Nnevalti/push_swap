@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pile.h"
+#include "../include/stack.h"
 
 int		check_isnum(char *arg)
 {
@@ -52,27 +52,7 @@ int		check_double(char **tab, int i)
 	return (0);
 }
 
-void	check_arg(char **tab)
-{
-	int		i;
-
-	i = 0;
-	while (tab[i])
-	{
-		if (check_isnum(tab[i]) == -1
-			|| isinteger(tab[i]) == -1
-			|| check_double(tab, i) == -1)
-		{
-			free_tab(tab);
-			printf("Error\n");
-			exit(1);
-		}
-		i++;
-	}
-	return ;
-}
-
-void	check_arg_checker(char **tab, t_flags *flags)
+void	check_arg(char **tab, t_flags *flags)
 {
 	int		i;
 

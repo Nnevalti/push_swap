@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pile.c                                             :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vdescham <vdescham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,57 +10,57 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pile.h"
+#include "../include/stack.h"
 
 t_pile		*init_pile(void)
 {
-	t_pile	*pile;
+	t_pile	*stack;
 
-	if (!(pile = malloc(sizeof(t_pile))))
+	if (!(stack = malloc(sizeof(t_pile))))
 		return (NULL);
-	pile->first = NULL;
-	return (pile);
+	stack->first = NULL;
+	return (stack);
 }
 
-void		empiler(t_pile *pile, int nb)
+void		empiler(t_pile *stack, int nb)
 {
 	t_element		*new;
 
-	if (!(new = malloc(sizeof(t_element))) || pile == NULL)
+	if (!(new = malloc(sizeof(t_element))) || stack == NULL)
 		exit(1);
 	new->nb = nb;
-	new->next = pile->first;
-	pile->first = new;
+	new->next = stack->first;
+	stack->first = new;
 	return ;
 }
 
-int			depiler(t_pile *pile)
+int			depiler(t_pile *stack)
 {
 	int			depile_nb;
 	t_element	*depile_element;
 
-	if (pile == NULL)
+	if (stack == NULL)
 		exit(1);
 	depile_nb = 0;
-	depile_element = pile->first;
+	depile_element = stack->first;
 	if (depile_element != NULL)
 	{
 		depile_nb = depile_element->nb;
-		pile->first = depile_element->next;
+		stack->first = depile_element->next;
 		free(depile_element);
 	}
 	return (depile_nb);
 }
 
-int			pile_length(t_pile *pile)
+int			pile_length(t_pile *stack)
 {
 	t_element	*current;
 	int			i;
 
 	i = 0;
-	if (pile->first == NULL)
+	if (stack->first == NULL)
 		return (0);
-	current = pile->first;
+	current = stack->first;
 	while (current)
 	{
 		current = current->next;
@@ -69,11 +69,11 @@ int			pile_length(t_pile *pile)
 	return (i);
 }
 
-void		display_pile(t_pile *pile)
+void		display_pile(t_pile *stack)
 {
 	t_element *current;
 
-	current = pile->first;
+	current = stack->first;
 	while (current)
 	{
 		printf("%d ", current->nb);

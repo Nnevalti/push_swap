@@ -10,18 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pile.h"
+#include "../include/stack.h"
 
-void	swap_nb(t_pile *pile)
+void	swap_nb(t_pile *stack)
 {
 	int		tmp[2];
 
-	if (pile_length(pile) < 2)
+	if (pile_length(stack) < 2)
 		return ;
-	tmp[0] = depiler(pile);
-	tmp[1] = depiler(pile);
-	empiler(pile, tmp[0]);
-	empiler(pile, tmp[1]);
+	tmp[0] = depiler(stack);
+	tmp[1] = depiler(stack);
+	empiler(stack, tmp[0]);
+	empiler(stack, tmp[1]);
 }
 
 void	push_nb(t_pile *from, t_pile *to)
@@ -35,7 +35,7 @@ void	push_nb(t_pile *from, t_pile *to)
 	return ;
 }
 
-void	rotate_nb(t_pile *pile, int len)
+void	rotate_nb(t_pile *stack, int len)
 {
 	int		tmp[len];
 	int		i;
@@ -45,20 +45,20 @@ void	rotate_nb(t_pile *pile, int len)
 	i = 0;
 	while (i < len)
 	{
-		tmp[i] = depiler(pile);
+		tmp[i] = depiler(stack);
 		i++;
 	}
-	empiler(pile, tmp[0]);
+	empiler(stack, tmp[0]);
 	i--;
 	while (i > 0)
 	{
-		empiler(pile, tmp[i]);
+		empiler(stack, tmp[i]);
 		i--;
 	}
 	return ;
 }
 
-void	reverse_rotate_nb(t_pile *pile, int len)
+void	reverse_rotate_nb(t_pile *stack, int len)
 {
 	int		tmp[len];
 	int		i;
@@ -68,15 +68,15 @@ void	reverse_rotate_nb(t_pile *pile, int len)
 	i = 0;
 	while (i < len)
 	{
-		tmp[i] = depiler(pile);
+		tmp[i] = depiler(stack);
 		i++;
 	}
 	i -= 2;
 	while (i >= 0)
 	{
-		empiler(pile, tmp[i]);
+		empiler(stack, tmp[i]);
 		i--;
 	}
-	empiler(pile, tmp[len - 1]);
+	empiler(stack, tmp[len - 1]);
 	return ;
 }

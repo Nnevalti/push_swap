@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pile.h"
+#include "../include/stack.h"
 
 char	**ft_append_tab(char **cmds_array, char *cmd)
 {
@@ -35,6 +35,13 @@ char	**ft_append_tab(char **cmds_array, char *cmd)
 	return (new_array);
 }
 
+void	free_flags_and_piles(t_pile *a, t_pile *b, t_flags *flags)
+{
+	free_pile(a);
+	free_pile(b);
+	free(flags);
+}
+
 void	analyze_cmds(char **cmds_array, t_pile *a, t_pile *b, t_flags *flags)
 {
 	int		i;
@@ -47,22 +54,20 @@ void	analyze_cmds(char **cmds_array, t_pile *a, t_pile *b, t_flags *flags)
 		if (exec_cmd(cmds_array[i], a, b) == -1)
 		{
 			free_tab(cmds_array);
-			free_pile(a);
-			free_pile(b);
-			free(flags);
+			free_flags_and_piles(a, b, flags);
 			printf("Error\n");
 			exit(1);
 		}
 		if (flags->visual == TRUE)
 		{
 			move++;
-			visual(a, b, flags, cmds_array[i]);
-			printf("MOVE : %d\n", move);
-			system("sleep 0.01");
+			visual(a, b, cmds_array[i], move);
 		}
 		i++;
 	}
 	free_tab(cmds_array);
+	if (flags->visual == TRUE)
+		pile_sorted_visual(a, b, move, flags->reverse);
 }
 
 void	read_cmd(t_pile *a, t_pile *b, t_flags *flags)
@@ -84,7 +89,10 @@ void	read_cmd(t_pile *a, t_pile *b, t_flags *flags)
 	}
 	if (cmds_array != NULL)
 		analyze_cmds(cmds_array, a, b, flags);
-	sorted_check(a, b);
+	if (flags->reverse == TRUE)
+		sorted_check_r(a, b);
+	else
+		sorted_check(a, b);
 	free_pile(a);
 	free_pile(b);
 }
@@ -100,8 +108,8 @@ int		main(int ac, char **av)
 	if (ac <= 1)
 		exit(1);
 	flags = init_flags();
-	tab = parse_arg_checker(av, ac, flags);
-	check_arg_checker(tab, flags);
+	tab = parse_arg(av, ac, flags);
+	check_arg(tab, flags);
 	a = init_pile();
 	b = init_pile();
 	i = ft_tablen(tab);

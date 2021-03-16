@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pile.h"
+#include "../include/stack.h"
 
 void	rotate_n_times(t_pile *a, t_pile *b, int pos)
 {
@@ -36,14 +36,14 @@ void	rotate_n_times(t_pile *a, t_pile *b, int pos)
 	return ;
 }
 
-int		find_biggest_nb_pos(t_pile *pile)
+int		find_biggest_nb_pos(t_pile *stack)
 {
 	t_element	*current;
 	int			i;
 	int			pos;
 	int			nb;
 
-	current = pile->first;
+	current = stack->first;
 	nb = current->nb;
 	i = 0;
 	pos = 0;
@@ -59,14 +59,14 @@ int		find_biggest_nb_pos(t_pile *pile)
 	return (pos);
 }
 
-int		find_smallest_nb_pos(t_pile *pile)
+int		find_smallest_nb_pos(t_pile *stack)
 {
 	t_element	*current;
 	int			i;
 	int			pos;
 	int			nb;
 
-	current = pile->first;
+	current = stack->first;
 	nb = current->nb;
 	i = 0;
 	pos = 0;
@@ -82,12 +82,12 @@ int		find_smallest_nb_pos(t_pile *pile)
 	return (pos);
 }
 
-int		find_min_nb(t_pile *pile)
+int		find_min_nb(t_pile *stack)
 {
 	t_element	*current;
 	int			nb;
 
-	current = pile->first;
+	current = stack->first;
 	nb = current->nb;
 	while (current)
 	{
@@ -98,12 +98,12 @@ int		find_min_nb(t_pile *pile)
 	return (nb);
 }
 
-int		find_max_nb(t_pile *pile)
+int		find_max_nb(t_pile *stack)
 {
 	t_element	*current;
 	int			nb;
 
-	current = pile->first;
+	current = stack->first;
 	nb = current->nb;
 	while (current)
 	{

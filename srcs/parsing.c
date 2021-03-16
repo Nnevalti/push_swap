@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pile.h"
+#include "../include/stack.h"
 
 char	**ft_join_tab(char **tab, char **tmp_tab)
 {
@@ -40,24 +40,7 @@ char	**ft_join_tab(char **tab, char **tmp_tab)
 	return (new_tab);
 }
 
-char	**parse_arg_push_swap(char **av)
-{
-	char	**tab;
-	char	**tmp_tab;
-	int		i;
-
-	i = 1;
-	tab = ft_split(av[i], ' ');
-	while (av[i] && av[i + 1])
-	{
-		tmp_tab = ft_split(av[i + 1], ' ');
-		tab = ft_join_tab(tab, tmp_tab);
-		i++;
-	}
-	return (tab);
-}
-
-char	**parse_arg_checker(char **av, int ac, t_flags *flags)
+char	**parse_arg(char **av, int ac, t_flags *flags)
 {
 	char	**tab;
 	char	**tmp_tab;
