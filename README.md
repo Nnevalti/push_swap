@@ -58,7 +58,7 @@ This script will test checker and push_swap multiple times for different range a
 ## Options:
 
 > **-r, --range RANGE_LIST** <br>
-> Use a custom RANGE_LIST to test. The RANGE_LIST must be a string of digits. ex: "1 2 3"
+> Use a custom RANGE_LIST to test. RANGE_LIST must be a string of digits. ex: "1 2 3"
 > 
 > **-n, --nb-test NB_TEST** <br>
 > Test each range NB_TEST times.
