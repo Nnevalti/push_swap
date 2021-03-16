@@ -65,6 +65,3 @@ This script will test checker and push_swap multiple times for different range a
 > 
 > **-b, --bonus** <br>
 >	Test reverse sorting bonus.
-
----
-
