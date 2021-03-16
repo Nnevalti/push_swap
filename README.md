@@ -57,13 +57,13 @@ This script will test checker and push_swap multiple times for different range a
 
 ## Options:
 
-> **-r, --range RANGE_LIST**
+> **-r, --range RANGE_LIST** <br>
 > Use a custom RANGE_LIST in form of a string to test. ex: "1 2 3"
 > 
-> **-n, --nb-test NB_TEST**
+> **-n, --nb-test NB_TEST** <br>
 > Test each range NB_TEST times.
 > 
-> **-b, --bonus**
+> **-b, --bonus** <br>
 >	Test reverse sorting bonus.
 
 ---
