@@ -1,0 +1,62 @@
+# Push_swap and Checker :
+ 
+## Checker :
+    
+- Takes integer as arguments put them in a stack A and initialise an empty stack B. It then reads instructions on the standard output. Once read, checker executes them and displays OK if stack A is sorted. Otherwise, it will display KO.
+
+## Push_swap :
+    
+- Calculates and print on the standard output the smallest number of operation needed to sort Pile A.
+    
+## Operation available:
+    
+- sa : swap a - swap the first 2 elements at the top of stack a. Do nothing if there is only one or no elements).
+
+- sb : swap b - swap the first 2 elements at the top of stack b. Do nothing if there is only one or no elements).
+
+- ss : sa and sb at the same time.
+
+- pa : push a - take the first element at the top of b and put it at the top of a. Do nothing if b is empty.
+
+- pb : push b - take the first element at the top of a and put it at the top of b. Do nothing if a is empty.
+
+- ra : rotate a - shift up all elements of stack a by 1. The first element becomes the last one.
+
+- rb : rotate b - shift up all elements of stack b by 1. The first element becomes the last one.
+
+- rr : ra and rb at the same time.
+
+- rra : reverse rotate a - shift down all elements of stack a by 1. The last element becomes the first one.
+    
+- rrb : reverse rotate b - shift down all elements of stack b by 1. The last element becomes the first one.
+
+- rrr : rra and rrb at the same time.
+
+## Build the project:
+
+> make
+
+## Get a shuffled list:
+
+> ARG='ruby -e "puts (1..130).to_a.shuffle.join(' ')"'
+
+## exec programs:
+
+*** ./push_swap $ARG | ./checker $ARG
+
+# push_swap_tester.sh
+
+- This script will test checker and push_swap multiple times for different range and then display the result of each tested range. (number of correct answers, average number moves, minimum and maximum move used to sort the stack) It will generate a random list of numbers for each test.
+
+## Usage:	
+*** sh push_swap_tester.sh [OPTIONS]
+
+## Options:
+
+> -r, --range RANGE_LIST
+> -	Use a custom RANGE_LIST in form of a string to test. ex: "1 2 3"
+> -n, --nb-test NB_TEST
+> - Test each range NB_TEST times.
+> -b, --bonus
+>	- Test reverse sorting bonus.
+
