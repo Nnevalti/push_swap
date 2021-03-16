@@ -1,5 +1,16 @@
-#include "../include/pile.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   visual.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vdescham <vdescham@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/16 01:04:18 by vdescham          #+#    #+#             */
+/*   Updated: 2021/03/16 01:04:19 by vdescham         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../include/pile.h"
 
 void	print_nb_visual(t_element *a, t_element *b)
 {
@@ -10,19 +21,19 @@ void	print_nb_visual(t_element *a, t_element *b)
 	else if (b == NULL)
 		printf("%5s%-5d \t %10s", "", a->nb, "");
 	else
-		printf("%5s%-5d \t %5s%-5d", "",a->nb, "",b->nb);
+		printf("%5s%-5d \t %5s%-5d", "", a->nb, "", b->nb);
 	printf("\n");
 }
 
 void	display_visual(t_pile *a, t_pile *b, t_flags *flags)
 {
-	(void)flags;
-	int		len_a;
-	int		len_b;
-	int		max;
+	int			len_a;
+	int			len_b;
+	int			max;
 	t_element	*current_a;
 	t_element	*current_b;
 
+	(void)flags;
 	if (pile_length(a) == 0)
 		max = find_max_nb(b);
 	else if (pile_length(b) == 0)

@@ -35,7 +35,7 @@ char	**ft_append_tab(char **cmds_array, char *cmd)
 	return (new_array);
 }
 
-void	analyze_cmds(char **cmds_array, t_pile *a, t_pile *b,t_flags *flags)
+void	analyze_cmds(char **cmds_array, t_pile *a, t_pile *b, t_flags *flags)
 {
 	int		i;
 	int		move;
