@@ -2,7 +2,7 @@
  
 ## Checker :
     
-- Takes integer as arguments put them in a stack A and initialise an empty stack B. It then reads instructions on the standard output. Once read, checker executes them and displays OK if stack A is sorted. Otherwise, it will display KO.
+- Takes integers as arguments put them in a stack A and initialise an empty stack B. It then reads instructions on the standard output. Once read, checker executes them and displays OK if stack A is sorted. Otherwise, it will display KO.
 
 ## Push_swap :
     
