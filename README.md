@@ -42,21 +42,23 @@
 
 ## exec programs:
 
-*** ./push_swap $ARG | ./checker $ARG
+> ./push_swap $ARG | ./checker $ARG
 
 # push_swap_tester.sh
 
 - This script will test checker and push_swap multiple times for different range and then display the result of each tested range. (number of correct answers, average number moves, minimum and maximum move used to sort the stack) It will generate a random list of numbers for each test.
 
 ## Usage:	
-*** sh push_swap_tester.sh [OPTIONS]
+> sh push_swap_tester.sh [OPTIONS]
 
 ## Options:
 
 > -r, --range RANGE_LIST
 > -	Use a custom RANGE_LIST in form of a string to test. ex: "1 2 3"
+> 
 > -n, --nb-test NB_TEST
 > - Test each range NB_TEST times.
+> 
 > -b, --bonus
 >	- Test reverse sorting bonus.
 
