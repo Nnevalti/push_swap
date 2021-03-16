@@ -46,8 +46,9 @@ Calculates and print on the standard output the smallest number of operation nee
 
 ---
 
-# Push_swap_tester.sh
+# [Push_swap_tester.sh](https://github.com/Nnevalti/push_swap_tester)
 
+(If you just want the script click the title above)
 This script will test checker and push_swap multiple times for different range and then display the result of each tested range. (number of correct answers, average number moves, minimum and maximum move used to sort the stack) It will generate a random list of numbers for each test.
 
 **Note:** The script worked under Linux Xubuntu (42 VirtualMachine). I haven't tried it on MacOS or other Linux distribution. You can always fork the project and adapt it if you want.
