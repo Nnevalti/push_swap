@@ -2,11 +2,11 @@
  
 ## Checker :
     
-- Takes integers as arguments put them in a stack A and initialise an empty stack B. It then reads instructions on the standard output. Once read, checker executes them and displays OK if stack A is sorted. Otherwise, it will display KO.
+Takes integers as arguments put them in a stack A and initialise an empty stack B. It then reads instructions on the standard output. Once read, checker executes them and displays OK if stack A is sorted. Otherwise, it will display KO.
 
 ## Push_swap :
     
-- Calculates and print on the standard output the smallest number of operation needed to sort Pile A.
+Calculates and print on the standard output the smallest number of operation needed to sort Pile A.
     
 ## Operation available:
     
@@ -32,37 +32,39 @@
 
 - rrr : rra and rrb at the same time.
 
+---
+
 ## Build the project:
 
-> make
+`make`
 
 ## Get a shuffled list:
 
-> ARG='ruby -e "puts (1..130).to_a.shuffle.join(' ')"'
+`ARG='ruby -e "puts (1..130).to_a.shuffle.join(' ')"'`
 
 ## exec programs:
 
----
-
- ./push_swap $ARG | ./checker $ARG
+`./push_swap $ARG | ./checker $ARG`
 
 ---
 
 # push_swap_tester.sh
 
-- This script will test checker and push_swap multiple times for different range and then display the result of each tested range. (number of correct answers, average number moves, minimum and maximum move used to sort the stack) It will generate a random list of numbers for each test.
+This script will test checker and push_swap multiple times for different range and then display the result of each tested range. (number of correct answers, average number moves, minimum and maximum move used to sort the stack) It will generate a random list of numbers for each test.
 
 ## Usage:	
-> sh push_swap_tester.sh [OPTIONS]
+`sh push_swap_tester.sh [OPTIONS]`
 
 ## Options:
 
-> -r, --range RANGE_LIST
-> -	Use a custom RANGE_LIST in form of a string to test. ex: "1 2 3"
+> **-r, --range RANGE_LIST**
+> Use a custom RANGE_LIST in form of a string to test. ex: "1 2 3"
 > 
-> -n, --nb-test NB_TEST
-> - Test each range NB_TEST times.
+> **-n, --nb-test NB_TEST**
+> Test each range NB_TEST times.
 > 
-> -b, --bonus
->	- Test reverse sorting bonus.
+> **-b, --bonus**
+>	Test reverse sorting bonus.
+
+---
 
