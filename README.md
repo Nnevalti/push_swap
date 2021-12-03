@@ -1,5 +1,7 @@
 # Push_swap and Checker :
  
+ Final Score: ![Nnevalti's Push_swap Score](https://badge42.herokuapp.com/api/project/vdescham/push_swap)
+ 
 ## Checker :
     
 Takes integers as arguments put them in a stack A and initialise an empty stack B. It then reads instructions on the standard output. Once read, checker executes them and displays OK if stack A is sorted. Otherwise, it will display KO.
