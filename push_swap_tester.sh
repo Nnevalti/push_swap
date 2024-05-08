@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # PATH to push_swap directory
 PS_DIR="./"
